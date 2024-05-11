@@ -8,6 +8,7 @@
             <th>Apellido</th>
             <th>Cedula</th>
             <th>Acciones</th>
+            <th>Ver</th>
         </tr>
     </thead>
     <tbody>
@@ -28,6 +29,7 @@
                     <button class="btn" [ngClass]="!item.active ? 'btn-success' : 'btn-danger'">habilitar</button>
                 </ng-template>
             </td>
+            <td><a class="btn btn-primary" [routerLink]="['/cliente', item.clienteId]" routerLinkActive="router-link-active" >Ver</a></td>
         </tr>
     </tbody>
 </table>
