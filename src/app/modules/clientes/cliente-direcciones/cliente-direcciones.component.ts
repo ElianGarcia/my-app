@@ -3,13 +3,11 @@ import { Direccion } from '../../../models/direccion';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-direccion-detail',
-  templateUrl: './direccion-detail.component.html',
-  styleUrl: './direccion-detail.component.css'
+  selector: 'app-cliente-direcciones',
+  templateUrl: './cliente-direcciones.component.html',
+  styleUrl: './cliente-direcciones.component.css'
 })
-export class DireccionDetailComponent {
-  @Input() direccionParam: Direccion;
-
+export class ClienteDireccionesComponent {
   direcciones: Direccion[] = [
     {
       addressId: 0,
@@ -45,7 +43,7 @@ export class DireccionDetailComponent {
       country: "País Tres",
       active: true,
       createAt: "2024-05-10",
-      clienteId: 2
+      clienteId: 0
     },
     {
       addressId: 3,
@@ -57,7 +55,7 @@ export class DireccionDetailComponent {
       country: "País Cuatro",
       active: true,
       createAt: "2024-05-10",
-      clienteId: 3
+      clienteId: 0
     },
     {
       addressId: 4,
@@ -69,23 +67,17 @@ export class DireccionDetailComponent {
       country: "País Cinco",
       active: false,
       createAt: "2024-05-10",
-      clienteId: 4
+      clienteId: 1
     }
   ];
+  
+  direccionesCliente : Direccion[];
 
-  direccion: Direccion = new Direccion();
-
-  constructor(private routeManager: ActivatedRoute) {
+  constructor(private routeManager : ActivatedRoute) {
     this.routeManager.params.subscribe((params) => {
-      if (params['id']) {
-        this.direccion = this.direcciones.find(direccion => direccion.addressId == params['id']);
+      if(params['clienteId']){
+        this.direccionesCliente = this.direcciones.filter(direccion => direccion.clienteId == params['clienteId']);
       }
-    });
-  }
-
-  ngOnInit() {
-    if (this.direccionParam) {
-      this.direccion = this.direccionParam;
-    }
+    })
   }
 }

@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ClientesComponent } from './clientes/clientes.component';
-import { ClientesDetailComponent } from './clientes-detail/clientes-detail.component';
+import { ClienteDetailComponent } from './cliente-detail/cliente-detail.component';
+import { ClienteDireccionesComponent } from './cliente-direcciones/cliente-direcciones.component';
 
 const routes: Routes = [
   {
@@ -10,11 +11,11 @@ const routes: Routes = [
   },
   {
     path: 'cliente/:id',
-    component: ClientesDetailComponent
+    component: ClienteDetailComponent
   },
   {
-    path: 'cliente-direcciones/:direccionId',
-    component: ClientesDetailComponent
+    path: 'cliente-direcciones/:clienteId',
+    component: ClienteDireccionesComponent
   }
 ];
 

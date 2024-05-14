@@ -8,7 +8,7 @@
             <th>Apellido</th>
             <th>Cedula</th>
             <th>Acciones</th>
-            <th>Ver</th>
+            <th colspan="2">Ver</th>
         </tr>
     </thead>
     <tbody>
@@ -22,8 +22,13 @@
                 <app-status-button [active]="item.active"></app-status-button>
             </td>
 
-            <td><a class="btn btn-primary" [routerLink]="['./cliente', item.clienteId]"
-            routerLinkActive="router-link-active">Ver</a></td>
+            <td>
+                <a class="btn btn-primary" [routerLink]="['./cliente', item.clienteId]" routerLinkActive="router-link-active">Ver</a>
+            </td>
+
+            <td>
+                <a class="btn btn-primary" [routerLink]="['/clientes/cliente-direcciones', item.clienteId]" routerLinkActive="router-link-active">Ver direcciones</a>
+            </td>
         </tr>
     </tbody>
 </table>

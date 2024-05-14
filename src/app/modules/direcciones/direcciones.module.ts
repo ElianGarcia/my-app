@@ -4,6 +4,7 @@ import { DireccionesComponent } from './direcciones/direcciones.component';
 import { DireccionDetailComponent } from './direccion-detail/direccion-detail.component';
 import { NgModule } from '@angular/core';
 import { StatusButtonComponent } from '../../shared/status-button/status-button.component';
+import { ItemNotFoundComponent } from '../../shared/item-not-found/item-not-found.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,11 @@ import { StatusButtonComponent } from '../../shared/status-button/status-button.
   imports: [
     CommonModule,
     DireccionesRoutingModule,
-    StatusButtonComponent
+    StatusButtonComponent,
+    ItemNotFoundComponent
+  ],
+  exports: [
+    DireccionDetailComponent
   ]
 })
 export class DireccionesModule { }

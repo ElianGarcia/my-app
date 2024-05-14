@@ -2,7 +2,7 @@
 
 <ng-template #direccionEncontrada>
     <div class="d-flex justify-content-center">
-        <div class="card" style="width: 30rem;">
+        <div class="card" style="width: 20rem; background-color: #e3f2fd;">
             <div class="card-header fw-bold fs-4">
                 {{direccion.alias}}
             </div>
@@ -14,24 +14,14 @@
                 <li class="list-group-item"><b>Pais: </b> {{direccion.country}}</li>
                 <li class="list-group-item"><b>Creada el: </b> {{direccion.createAt | date}}</li>
             </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
+            <div class="card-body d-flex justify-content-end">
+                <app-status-button [active]="direccion.active"></app-status-button> &nbsp;
+                <a href="#" class="btn btn-primary">Editar</a>
             </div>
         </div>
     </div>
 </ng-template>
 
 <ng-template #direccionNoEncontrada>
-    <div class="card">
-        <div class="card-header">
-            Error
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Direccion no encontrada</h5>
-            <p class="card-text">La direccion especificada no pudo ser encontrada.</p>
-            <a [routerLink]="['/direcciones']" routerLinkActive="router-link-active" class="btn btn-primary">Volver al
-                listado</a>
-        </div>
-    </div>
+    <app-item-not-found [path]="'/direcciones'"></app-item-not-found>
 </ng-template>
