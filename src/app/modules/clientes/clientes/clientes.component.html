@@ -1,0 +1,29 @@
+<h3>Lista de clientes</h3>
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Cedula</th>
+            <th>Acciones</th>
+            <th>Ver</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of clientes">
+            <td>{{item.clienteId}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.lastName}}</td>
+            <td>{{item.cedula}}</td>
+
+            <td>
+                <app-status-button [active]="item.active"></app-status-button>
+            </td>
+
+            <td><a class="btn btn-primary" [routerLink]="['./cliente', item.clienteId]"
+            routerLinkActive="router-link-active">Ver</a></td>
+        </tr>
+    </tbody>
+</table>

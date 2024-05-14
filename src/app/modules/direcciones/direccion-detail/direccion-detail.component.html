@@ -1,0 +1,37 @@
+<ng-container *ngIf="direccion then direccionEncontrada; else direccionNoEncontrada"></ng-container>
+
+<ng-template #direccionEncontrada>
+    <div class="d-flex justify-content-center">
+        <div class="card" style="width: 30rem;">
+            <div class="card-header fw-bold fs-4">
+                {{direccion.alias}}
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>Calle: </b> {{direccion.street}}</li>
+                <li class="list-group-item"><b>Ciudad: </b> {{direccion.city}}</li>
+                <li class="list-group-item"><b>Estado: </b> {{direccion.state}}</li>
+                <li class="list-group-item"><b>Codigo Postal: </b> {{direccion.zipCode}}</li>
+                <li class="list-group-item"><b>Pais: </b> {{direccion.country}}</li>
+                <li class="list-group-item"><b>Creada el: </b> {{direccion.createAt | date}}</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #direccionNoEncontrada>
+    <div class="card">
+        <div class="card-header">
+            Error
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Direccion no encontrada</h5>
+            <p class="card-text">La direccion especificada no pudo ser encontrada.</p>
+            <a [routerLink]="['/direcciones']" routerLinkActive="router-link-active" class="btn btn-primary">Volver al
+                listado</a>
+        </div>
+    </div>
+</ng-template>

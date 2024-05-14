@@ -1,0 +1,23 @@
+<div class="d-flex justify-content-evenly mt-2">
+    <div class="card" style="width: 25rem;background-color: #e3f2fd;">
+        <div class="card-body">
+            <h5 class="card-title">Clientes</h5>
+            <p class="card-text">
+                Desde este modulo podras consultar, crear y editar 
+                los clientes que tienes registrados.
+            </p>
+            <a [routerLink]="['/clientes']" routerLinkActive="router-link-active"  class="btn btn-primary">Ver clientes</a>
+        </div>
+    </div>
+
+    <div class="card" style="width: 25rem;background-color: #e3f2fd;">
+        <div class="card-body">
+            <h5 class="card-title">Direcciones</h5>
+            <p class="card-text">
+                Desde este modulo podras consultar, crear y editar las
+                direcciones que tienes registradas.
+            </p>
+            <a [routerLink]="['/direcciones']" routerLinkActive="router-link-active"  class="btn btn-primary">Ver direcciones</a>
+        </div>
+    </div>
+</div>
