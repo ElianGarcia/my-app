@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-status-button',
@@ -13,5 +13,14 @@ import { Component, Input } from '@angular/core';
 export class StatusButtonComponent {
   @Input() active;
 
+  @Output() activar = new EventEmitter<void>();
+  @Output() desactivar = new EventEmitter<void>();
 
+  public onActivate() : void {
+    this.activar.emit();
+  }
+
+  public onDeactivate() : void {
+    this.desactivar.emit();
+  }
 }

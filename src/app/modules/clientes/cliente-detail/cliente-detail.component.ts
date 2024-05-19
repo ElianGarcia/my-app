@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Cliente } from '../../../models/cliente';
+import { Observable } from 'rxjs';
+import { ClientesService } from '../../../services/clientes.service';
 
 @Component({
   selector: 'app-cliente-detail',
@@ -8,36 +10,27 @@ import { Cliente } from '../../../models/cliente';
   styleUrl: './cliente-detail.component.css'
 })
 export class ClienteDetailComponent {
-  clientes : Cliente[] = [
-    {
-      clienteId: 0, 
-      name: "Enmanuel", 
-      lastName: "Suarez", 
-      cedula: "064-5948452-8", 
-      birthDate: new Date("1998-03-26"),
-      createAt: new Date("2024-03-26"),
-      email: "emsuarez@example.com",
-      active: true
-    },
-    {
-      clienteId: 1, 
-      name: "Pascual", 
-      lastName: "Garcia", 
-      cedula: "064-5948452-8", 
-      birthDate: new Date("1998-03-26"),
-      createAt: new Date("2024-03-26"),
-      email: "pgarcia@example.com",
-      active: false
-    }
-  ]
+  client: Observable<Cliente>;
 
-  cliente : Cliente = new Cliente();
-  
-  constructor(private routeManager : ActivatedRoute) {
+  constructor(private routeManager: ActivatedRoute, private _servicio: ClientesService) {
+
+  }
+
+  ngOnInit() {
     this.routeManager.params.subscribe((params) => {
-      if(params['id']){
-        this.cliente = this.clientes.find(cliente => cliente.clienteId == params['id']);
+      if (params['id']) {
+        this.client = this._servicio.getClienteById(+params['id']);
       }
     })
+  }
+
+  activar(cliente : Cliente) {
+    cliente.active = true;
+    this._servicio.editCliente(cliente);
+  }
+  
+  desactivar(cliente : Cliente) {
+    cliente.active = false;
+    this._servicio.editCliente(cliente);
   }
 }

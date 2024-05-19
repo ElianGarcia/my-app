@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Direccion } from '../../../models/direccion';
 import { ActivatedRoute } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { DireccionService } from '../../../services/direccion.service';
 
 @Component({
   selector: 'app-direccion-detail',
@@ -10,82 +12,32 @@ import { ActivatedRoute } from '@angular/router';
 export class DireccionDetailComponent {
   @Input() direccionParam: Direccion;
 
-  direcciones: Direccion[] = [
-    {
-      addressId: 0,
-      alias: "Casa",
-      street: "123 Main St",
-      city: "Ciudad Uno",
-      state: "Estado Uno",
-      zipCode: "12345",
-      country: "País Uno",
-      active: true,
-      createAt: "2024-05-10",
-      clienteId: 0
-    },
-    {
-      addressId: 1,
-      alias: "Trabajo",
-      street: "456 Elm St",
-      city: "Ciudad Dos",
-      state: "Estado Dos",
-      zipCode: "54321",
-      country: "País Dos",
-      active: true,
-      createAt: "2024-05-10",
-      clienteId: 1
-    },
-    {
-      addressId: 2,
-      alias: "Casa de Verano",
-      street: "789 Oak St",
-      city: "Ciudad Tres",
-      state: "Estado Tres",
-      zipCode: "67890",
-      country: "País Tres",
-      active: true,
-      createAt: "2024-05-10",
-      clienteId: 2
-    },
-    {
-      addressId: 3,
-      alias: "Oficina",
-      street: "101 Pine St",
-      city: "Ciudad Cuatro",
-      state: "Estado Cuatro",
-      zipCode: "98765",
-      country: "País Cuatro",
-      active: true,
-      createAt: "2024-05-10",
-      clienteId: 3
-    },
-    {
-      addressId: 4,
-      alias: "Apartamento",
-      street: "202 Maple St",
-      city: "Ciudad Cinco",
-      state: "Estado Cinco",
-      zipCode: "56789",
-      country: "País Cinco",
-      active: false,
-      createAt: "2024-05-10",
-      clienteId: 4
-    }
-  ];
+  direccion: Observable<Direccion>;
 
-  direccion: Direccion = new Direccion();
-
-  constructor(private routeManager: ActivatedRoute) {
-    this.routeManager.params.subscribe((params) => {
-      if (params['id']) {
-        this.direccion = this.direcciones.find(direccion => direccion.addressId == params['id']);
-      }
-    });
+  constructor(private routeManager: ActivatedRoute, private _servicio : DireccionService) {
+    
   }
 
   ngOnInit() {
     if (this.direccionParam) {
-      this.direccion = this.direccionParam;
+      this.direccion = of(this.direccionParam);
     }
+    else {
+      this.routeManager.params.subscribe((params) => {
+        if (params['id']) {
+          this.direccion = this._servicio.getDireccionById(+params['id']);
+        }
+      });
+    }
+  }
+
+  activar(direccion : Direccion) {
+    direccion.active = true;
+    this._servicio.editDireccion(direccion);
+  }
+  
+  desactivar(direccion : Direccion) {
+    direccion.active = false;
+    this._servicio.editDireccion(direccion);
   }
 }

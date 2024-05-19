@@ -1,6 +1,4 @@
-<ng-container *ngIf="cliente then clienteEncontrado; else clienteNoEncontrado"></ng-container>
-
-<ng-template #clienteEncontrado>
+<ng-container *ngIf="client | async as cliente; else clienteNoEncontrado">
     <div class="d-flex justify-content-center">
         <div class="card" style="width: 30rem;">
             <div class="card-header fw-bold fs-4">
@@ -14,12 +12,16 @@
                 <li class="list-group-item"><b>Creada el: </b> {{cliente.createAt | date}}</li>
             </ul>
             <div class="card-body d-flex justify-content-end">
-                <a href="#" class="btn btn-danger">Deshabilitar</a> &nbsp;
+                <app-status-button 
+                    [active]="cliente.active"
+                    (activar)="activar(cliente)"
+                    (desactivar)="desactivar(cliente)">
+                </app-status-button> &nbsp;
                 <a href="#" class="btn btn-primary">Editar</a>
             </div>
         </div>
     </div>
-</ng-template>
+</ng-container>
 
 <ng-template #clienteNoEncontrado>
     <app-item-not-found [path]="'/clientes'"></app-item-not-found>

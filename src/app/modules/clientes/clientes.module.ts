@@ -7,8 +7,8 @@ import { ClienteDetailComponent } from './cliente-detail/cliente-detail.componen
 import { StatusButtonComponent } from '../../shared/status-button/status-button.component';
 import { ItemNotFoundComponent } from '../../shared/item-not-found/item-not-found.component';
 import { ClienteDireccionesComponent } from './cliente-direcciones/cliente-direcciones.component';
-import { DireccionDetailComponent } from '../direcciones/direccion-detail/direccion-detail.component';
 import { DireccionesModule } from '../direcciones/direcciones.module';
+import { ClientesService } from '../../services/clientes.service';
 
 
 @NgModule({
@@ -23,6 +23,9 @@ import { DireccionesModule } from '../direcciones/direcciones.module';
     StatusButtonComponent,
     ItemNotFoundComponent,
     DireccionesModule
+  ],
+  providers: [
+    ClientesService
   ]
 })
 export class ClientesModule { }

@@ -1,9 +1,9 @@
 <ng-container *ngIf="active then botonParaActivo; else botonParaInactivo"></ng-container>
 
 <ng-template #botonParaActivo>
-    <button class="btn" [ngClass]="active ? 'btn-danger' : 'btn-success'">Deshabilitar</button>
+    <button class="btn" [ngClass]="active ? 'btn-danger' : 'btn-success'" (click)="onDeactivate()">Deshabilitar</button>
 </ng-template>
 
 <ng-template #botonParaInactivo>
-    <button class="btn" [ngClass]="!active ? 'btn-success' : 'btn-danger'">Habilitar</button>
+    <button class="btn" [ngClass]="!active ? 'btn-success' : 'btn-danger'" (click)="onActivate()">Habilitar</button>
 </ng-template>

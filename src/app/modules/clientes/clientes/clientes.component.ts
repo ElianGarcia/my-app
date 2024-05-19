@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Cliente } from '../../../models/cliente';
+import { ClientesService } from '../../../services/clientes.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-clientes',
@@ -9,26 +10,23 @@ import { Cliente } from '../../../models/cliente';
   styleUrl: './clientes.component.css'
 })
 export class ClientesComponent {
-  clientes : Cliente[] = [
-    {
-      clienteId: 0, 
-      name: "Enmanuel", 
-      lastName: "Suarez", 
-      cedula: "064-5948452-8", 
-      birthDate: new Date("1998-03-26"),
-      createAt: new Date("2024-03-26"),
-      email: "emsuarez@example.com",
-      active: true
-    },
-    {
-      clienteId: 1, 
-      name: "Pascual", 
-      lastName: "Garcia", 
-      cedula: "064-5948452-8", 
-      birthDate: new Date("1998-03-26"),
-      createAt: new Date("2024-03-26"),
-      email: "pgarcia@example.com",
-      active: false
-    }
-  ]
+  listaClientes : Observable<Cliente[]>;
+
+  constructor(private _servicio : ClientesService) {
+
+  }
+
+  ngOnInit() {
+    this.listaClientes = this._servicio.getClientes();
+  }
+
+  activar(cliente : Cliente) {
+    cliente.active = true;
+    this._servicio.editCliente(cliente);
+  }
+  
+  desactivar(cliente : Cliente) {
+    cliente.active = false;
+    this._servicio.editCliente(cliente);
+  }
 }

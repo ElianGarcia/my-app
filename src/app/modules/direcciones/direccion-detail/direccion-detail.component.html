@@ -1,6 +1,4 @@
-<ng-container *ngIf="direccion then direccionEncontrada; else direccionNoEncontrada"></ng-container>
-
-<ng-template #direccionEncontrada>
+<ng-container *ngIf="direccion | async as direccion; else direccionNoEncontrada">
     <div class="d-flex justify-content-center">
         <div class="card" style="width: 20rem; background-color: #e3f2fd;">
             <div class="card-header fw-bold fs-4">
@@ -15,12 +13,16 @@
                 <li class="list-group-item"><b>Creada el: </b> {{direccion.createAt | date}}</li>
             </ul>
             <div class="card-body d-flex justify-content-end">
-                <app-status-button [active]="direccion.active"></app-status-button> &nbsp;
+                <app-status-button 
+                    [active]="direccion.active"
+                    (activar)="activar(direccion)"
+                    (desactivar)="desactivar(direccion)">
+                </app-status-button> &nbsp;
                 <a href="#" class="btn btn-primary">Editar</a>
             </div>
         </div>
     </div>
-</ng-template>
+</ng-container>
 
 <ng-template #direccionNoEncontrada>
     <app-item-not-found [path]="'/direcciones'"></app-item-not-found>
