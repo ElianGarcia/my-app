@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   styleUrl: './clientes.component.css'
 })
 export class ClientesComponent {
-  listaClientes : Observable<Cliente[]>;
+  listaClientes : Cliente[];
 
   constructor(private _servicio : ClientesService) {
 
@@ -21,7 +21,14 @@ export class ClientesComponent {
   }
 
   getClientes() : void {
-    this.listaClientes = this._servicio.getClientes();
+    this._servicio.getClientes().subscribe({
+      next: (value) => {
+        this.listaClientes = value;
+      },
+      error: (error) => {
+        console.error(error)
+      }
+    })
   }
 
   cambiarEstatus(cliente : Cliente) {

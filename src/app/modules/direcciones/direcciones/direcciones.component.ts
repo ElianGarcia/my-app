@@ -9,18 +9,34 @@ import { DireccionService } from '../../../services/direccion.service';
   styleUrl: './direcciones.component.css'
 })
 export class DireccionesComponent {
-  listaDirecciones: Observable<Direccion[]>;
+  direcciones: Direccion[];
 
   constructor(private _servicio : DireccionService) {
 
   }
 
   ngOnInit() {
-    this.listaDirecciones = this._servicio.getDirecciones();
+    this.getDirecciones();
+  }
+
+  getDirecciones() {
+    this._servicio.getDirecciones().subscribe({
+      next: (value) => {
+        this.direcciones = value
+      }
+    })
   }
 
   cambiarEstatus(direccion : Direccion) {
     direccion.active = !direccion.active;
-    this._servicio.editDireccion(direccion);
+
+    this._servicio.editDireccion(direccion).subscribe({
+      next: (value) => {
+        console.log('estatus cambiado')
+      },
+      error: (error) => {
+
+      }
+    })
   }
 }

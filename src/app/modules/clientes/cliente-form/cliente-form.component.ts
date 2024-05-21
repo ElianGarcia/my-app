@@ -25,7 +25,7 @@ export class ClienteFormComponent {
       lastName: ['', Validators.required],
       cedula: ['', [Validators.required, Validators.maxLength(11), Validators.minLength(11)]],
       birthDate: [new Date().getDate(), Validators.required],
-      createAt: [new Date().getDate()],
+      createdAt: [new Date().getDate()],
       email: ['', Validators.email],
       active: [true]
     })

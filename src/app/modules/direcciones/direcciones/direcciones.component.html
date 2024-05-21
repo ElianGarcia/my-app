@@ -11,7 +11,7 @@
             <th>Ver</th>
         </tr>
     </thead>
-    <tbody *ngIf="listaDirecciones | async as direcciones">
+    <tbody>
         <tr *ngFor="let item of direcciones">
             <td>{{item.addressId}}</td>
             <td>{{item.alias}}</td>

@@ -18,6 +18,10 @@ export class ClienteDetailComponent {
   }
 
   ngOnInit() {
+    this.loadCliente()
+  }
+
+  loadCliente() {
     this.routeManager.params.subscribe((params) => {
       if (params['id']) {
         this._servicio.getClienteById(+params['id']).subscribe({
@@ -41,6 +45,7 @@ export class ClienteDetailComponent {
       },
       error: (error) => {
         console.log(error)
+        this.loadCliente()
       }
     })
   }

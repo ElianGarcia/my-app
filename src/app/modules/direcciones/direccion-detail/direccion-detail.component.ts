@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Direccion } from '../../../models/direccion';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, of } from 'rxjs';
 import { DireccionService } from '../../../services/direccion.service';
 
 @Component({
@@ -23,23 +22,39 @@ export class DireccionDetailComponent {
       this.direccion = this.direccionParam;
     }
     else {
-      this.routeManager.params.subscribe((params) => {
-        if (params['id']) {
-          this._servicio.getDireccionById(+params['id']).subscribe({
-            next: (value) => {
-              this.direccion = value
-            },
-            error: (err) => {
-              console.log(err)
-            },
-          })
-        }
-      });
+      this.getCliente()
     }
+  }
+
+  getCliente() {
+    this.routeManager.params.subscribe((params) => {
+      if (params['id']) {
+        this._servicio.getDireccionById(+params['id']).subscribe({
+          next: (value) => {
+            this.direccion = value
+          },
+          error: (err) => {
+            console.log(err)
+          },
+        })
+      }
+    });
   }
 
   cambiarEstatus(direccion : Direccion) {
     direccion.active = !direccion.active;
-    this._servicio.editDireccion(direccion);
+    this._servicio.editDireccion(direccion).subscribe({
+      next: (value) => {
+        console.log('estatus cambiado')
+      },
+      error: (err) => {
+        console.error(err)
+
+        if(this.direccionParam)
+          this.direccionParam.active = !this.direccionParam.active
+        else 
+          this.getCliente()
+      }
+    })
   }
 }
