@@ -12,7 +12,7 @@ import { DireccionService } from '../../../services/direccion.service';
 export class DireccionDetailComponent {
   @Input() direccionParam: Direccion;
 
-  direccion: Observable<Direccion>;
+  direccion: Direccion;
 
   constructor(private routeManager: ActivatedRoute, private _servicio : DireccionService) {
     
@@ -20,24 +20,26 @@ export class DireccionDetailComponent {
 
   ngOnInit() {
     if (this.direccionParam) {
-      this.direccion = of(this.direccionParam);
+      this.direccion = this.direccionParam;
     }
     else {
       this.routeManager.params.subscribe((params) => {
         if (params['id']) {
-          this.direccion = this._servicio.getDireccionById(+params['id']);
+          this._servicio.getDireccionById(+params['id']).subscribe({
+            next: (value) => {
+              this.direccion = value
+            },
+            error: (err) => {
+              console.log(err)
+            },
+          })
         }
       });
     }
   }
 
-  activar(direccion : Direccion) {
-    direccion.active = true;
-    this._servicio.editDireccion(direccion);
-  }
-  
-  desactivar(direccion : Direccion) {
-    direccion.active = false;
+  cambiarEstatus(direccion : Direccion) {
+    direccion.active = !direccion.active;
     this._servicio.editDireccion(direccion);
   }
 }

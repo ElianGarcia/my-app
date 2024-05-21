@@ -13,14 +13,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class StatusButtonComponent {
   @Input() active;
 
-  @Output() activar = new EventEmitter<void>();
-  @Output() desactivar = new EventEmitter<void>();
+  @Output() cambiarEstatus = new EventEmitter<void>();
 
   public onActivate() : void {
-    this.activar.emit();
+    this.cambiarEstatus.emit();
   }
 
   public onDeactivate() : void {
-    this.desactivar.emit();
+    this.cambiarEstatus.emit();
   }
 }

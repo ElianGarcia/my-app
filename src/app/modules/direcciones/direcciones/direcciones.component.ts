@@ -19,13 +19,8 @@ export class DireccionesComponent {
     this.listaDirecciones = this._servicio.getDirecciones();
   }
 
-  activar(direccion : Direccion) {
-    direccion.active = true;
-    this._servicio.editDireccion(direccion);
-  }
-  
-  desactivar(direccion : Direccion) {
-    direccion.active = false;
+  cambiarEstatus(direccion : Direccion) {
+    direccion.active = !direccion.active;
     this._servicio.editDireccion(direccion);
   }
 }

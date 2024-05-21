@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Cliente } from '../../../models/cliente';
 import { Observable } from 'rxjs';
 import { ClientesService } from '../../../services/clientes.service';
+import { validateHeaderName } from 'http';
 
 @Component({
   selector: 'app-cliente-detail',
@@ -10,7 +11,7 @@ import { ClientesService } from '../../../services/clientes.service';
   styleUrl: './cliente-detail.component.css'
 })
 export class ClienteDetailComponent {
-  client: Observable<Cliente>;
+  cliente: Cliente;
 
   constructor(private routeManager: ActivatedRoute, private _servicio: ClientesService) {
 
@@ -19,18 +20,28 @@ export class ClienteDetailComponent {
   ngOnInit() {
     this.routeManager.params.subscribe((params) => {
       if (params['id']) {
-        this.client = this._servicio.getClienteById(+params['id']);
+        this._servicio.getClienteById(+params['id']).subscribe({
+          next: (value) => {
+            this.cliente = value;
+          },
+          error: (error) => {
+            console.log(error);
+          }
+        })
       }
     })
   }
 
-  activar(cliente : Cliente) {
-    cliente.active = true;
-    this._servicio.editCliente(cliente);
-  }
-  
-  desactivar(cliente : Cliente) {
-    cliente.active = false;
-    this._servicio.editCliente(cliente);
+  cambiarEstatus(cliente : Cliente) {
+    cliente.active = !cliente.active;
+
+    this._servicio.editCliente(cliente).subscribe({
+      next: (value) => {
+        console.log('estatus cambiado')
+      },
+      error: (error) => {
+        console.log(error)
+      }
+    })
   }
 }

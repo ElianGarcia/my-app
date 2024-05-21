@@ -1,4 +1,4 @@
-<ng-container *ngIf="direccion | async as direccion; else direccionNoEncontrada">
+<ng-container *ngIf="direccion; else direccionNoEncontrada">
     <div class="d-flex justify-content-center">
         <div class="card" style="width: 20rem; background-color: #e3f2fd;">
             <div class="card-header fw-bold fs-4">
@@ -15,8 +15,7 @@
             <div class="card-body d-flex justify-content-end">
                 <app-status-button 
                     [active]="direccion.active"
-                    (activar)="activar(direccion)"
-                    (desactivar)="desactivar(direccion)">
+                    (cambiarEstatus)="cambiarEstatus(direccion)">
                 </app-status-button> &nbsp;
                 <a href="#" class="btn btn-primary">Editar</a>
             </div>

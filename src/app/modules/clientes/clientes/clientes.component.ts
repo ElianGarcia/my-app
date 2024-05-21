@@ -17,16 +17,25 @@ export class ClientesComponent {
   }
 
   ngOnInit() {
+    this.getClientes();
+  }
+
+  getClientes() : void {
     this.listaClientes = this._servicio.getClientes();
   }
 
-  activar(cliente : Cliente) {
-    cliente.active = true;
-    this._servicio.editCliente(cliente);
-  }
-  
-  desactivar(cliente : Cliente) {
-    cliente.active = false;
-    this._servicio.editCliente(cliente);
+  cambiarEstatus(cliente : Cliente) {
+    cliente.active = !cliente.active;
+
+    this._servicio.editCliente(cliente).subscribe({
+      next: (value) => {
+        console.info('editado!')
+      },
+      error: (err) => {
+        console.log(err)
+        this.getClientes();
+      },
+    })
   }
 }
+
