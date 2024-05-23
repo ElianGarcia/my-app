@@ -4,6 +4,7 @@ import { ClientesService } from '../../../services/clientes.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Cliente } from '../../../models/cliente';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-cliente-form',
@@ -42,6 +43,10 @@ export class ClienteFormComponent {
         })        
       }
     })
+  }
+
+  format(value : string){
+    return formatDate(value, 'yyyy-MM-dd', 'en');
   }
 
   onSubmit() {

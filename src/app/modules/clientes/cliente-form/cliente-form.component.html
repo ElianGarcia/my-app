@@ -20,13 +20,13 @@
         
         <div class="mb-3">
             <label for="birthDate" class="form-label">Fecha de Nacimiento</label>
-            <input type="date" id="birthDate" name="birthDate" class="form-control" formControlName="birthDate" aria-describedby="birthDate" />
+            <input type="date" id="birthDate" name="birthDate" class="form-control" value="{{formulario.controls['birthDate'].value | date: 'yyyy-MM-dd'}}" formControlName="birthDate" aria-describedby="birthDate" />
             <small id="birthDate" class="text-danger">{{getError('birthDate', 'fecha de nacimiento')}}</small>
         </div>
         
         <div class="mb-3">
             <label for="createAt" class="form-label">Fecha de Creación</label>
-            <input type="date" id="createdAt" name="createdAt" class="form-control" formControlName="createdAt" aria-describedby="createdAt" />
+            <input type="date" id="createdAt" name="createdAt" class="form-control" value="{{formulario.controls['createdAt'].value | date: 'yyyy-MM-dd'}}" formControlName="createdAt" aria-describedby="createdAt" />
             <small id="createAt" class="text-danger">{{getError('createdAt', 'fecha de creación')}}</small>
         </div>
         

@@ -1,3 +1,5 @@
+import { Direccion } from "./direccion";
+
 export class Cliente {
     clienteId: number;
     name: string;
@@ -7,6 +9,8 @@ export class Cliente {
     createdAt: Date;
     email: string;
     active: boolean;
+
+    addresses: Direccion[]
 
     constructor() {
         this.clienteId = 0

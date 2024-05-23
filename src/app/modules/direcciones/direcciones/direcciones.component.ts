@@ -20,7 +20,7 @@ export class DireccionesComponent {
   }
 
   getDirecciones() {
-    this._servicio.getDirecciones().subscribe({
+    this._servicio.getAddresses().subscribe({
       next: (value) => {
         this.direcciones = value
       }
@@ -30,7 +30,7 @@ export class DireccionesComponent {
   cambiarEstatus(direccion : Direccion) {
     direccion.active = !direccion.active;
 
-    this._servicio.editDireccion(direccion).subscribe({
+    this._servicio.editAddress(direccion).subscribe({
       next: (value) => {
         console.log('estatus cambiado')
       },

@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Cliente } from '../../../models/cliente';
-import { Observable } from 'rxjs';
 import { ClientesService } from '../../../services/clientes.service';
-import { validateHeaderName } from 'http';
 
 @Component({
   selector: 'app-cliente-detail',

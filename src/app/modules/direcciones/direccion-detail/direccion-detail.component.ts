@@ -29,7 +29,7 @@ export class DireccionDetailComponent {
   getCliente() {
     this.routeManager.params.subscribe((params) => {
       if (params['id']) {
-        this._servicio.getDireccionById(+params['id']).subscribe({
+        this._servicio.getAddressById(+params['id']).subscribe({
           next: (value) => {
             this.direccion = value
           },
@@ -43,7 +43,7 @@ export class DireccionDetailComponent {
 
   cambiarEstatus(direccion : Direccion) {
     direccion.active = !direccion.active;
-    this._servicio.editDireccion(direccion).subscribe({
+    this._servicio.editAddress(direccion).subscribe({
       next: (value) => {
         console.log('estatus cambiado')
       },
