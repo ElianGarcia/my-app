@@ -1,5 +1,10 @@
 <h3 class="mt-2">Lista de direcciones</h3>
 
+<div class="d-flex justify-content-end">
+    <a class="btn btn-info" routerLink="form">Agregar direccion</a>
+</div>
+
+
 <table class="table table-responsive table-striped">
     <thead>
         <tr>
@@ -7,7 +12,7 @@
             <th>Alias</th>
             <th>Calle</th>
             <th>Ciudad</th>
-            <th>Acciones</th>
+            <th colspan="2">Acciones</th>
             <th>Ver</th>
         </tr>
     </thead>
@@ -24,6 +29,10 @@
                     (activar)="activar(item)"
                     (desactivar)="desactivar(item)">
                 </app-status-button>
+            </td>
+
+            <td>
+                <a class="btn btn-info" [routerLink]="['./form', item.clienteId]" routerLinkActive="router-link-active">Editar</a>
             </td>
 
             <td>

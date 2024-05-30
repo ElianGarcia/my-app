@@ -1,0 +1,90 @@
+<div class="d-flex justify-content-center">
+    <form class="col-md-5" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input
+                formControlName="name"
+                type="text"
+                name="name"
+                class="form-control"
+                aria-describedby="helpId"
+            />
+            <small id="helpId" class="text-danger">{{getError('name', 'nombre')}}</small>
+        </div>
+
+        <div class="mb-3">
+            <label for="lastName" class="form-label">Apellido</label>
+            <input
+                formControlName="lastName"
+                type="text"
+                name="lastName"
+                class="form-control"
+                aria-describedby="helpId"
+            />
+            <small id="helpId" class="text-danger">{{getError('lastName', 'apellido')}}</small>
+        </div>
+
+        <div class="mb-3">
+            <label for="cedula" class="form-label">Cedula</label>
+            <input
+                formControlName="cedula"
+                type="text"
+                name="cedula"
+                class="form-control"
+                aria-describedby="helpId"
+            />
+            <small id="helpId" class="text-danger">{{getError('cedula', 'cedula')}}</small>
+        </div>
+
+        <div class="mb-3">
+            <label for="birthDate" class="form-label">Fecha de nacimiento</label>
+            <input
+                formControlName="birthDate"
+                type="datetime"
+                name="birthDate"
+                class="form-control"
+                aria-describedby="helpId"
+            />
+            <small id="helpId" class="text-danger">{{getError('birthDate', 'fecha de nacimiento')}}</small>
+        </div>
+
+        <div class="mb-3">
+            <label for="createAt" class="form-label">Fecha de creacion</label>
+            <input
+                formControlName="createAt"
+                type="datetime"
+                name="createAt"
+                class="form-control"
+                aria-describedby="helpId"
+            />
+            <small id="helpId" class="text-danger">{{getError('createAt', 'fecha de creacion')}}</small>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input
+                formControlName="email"
+                type="email"
+                name="email"
+                class="form-control"
+                aria-describedby="helpId"
+            />
+            <small id="helpId" class="text-danger">{{getError('email', 'correo')}}</small>
+        </div>
+
+        <div class="mb-3">
+            <input
+                formControlName="active"
+                type="checkbox"
+                name="active"
+                class="form-check-input"
+                aria-describedby="helpId"
+            />
+            <label for="active" class="form-label">Activo</label>
+            
+            <small id="helpId" class="text-danger">{{getError('aactive', 'activo')}}</small>
+        </div>
+        
+        <button type="submit">Guardar</button>
+    </form>
+</div>

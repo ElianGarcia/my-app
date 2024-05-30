@@ -9,20 +9,24 @@ import { ItemNotFoundComponent } from '../../shared/item-not-found/item-not-foun
 import { ClienteDireccionesComponent } from './cliente-direcciones/cliente-direcciones.component';
 import { DireccionesModule } from '../direcciones/direcciones.module';
 import { ClientesService } from '../../services/clientes.service';
+import { ClienteFormComponent } from './cliente-form/cliente-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     ClientesComponent,
     ClienteDetailComponent,
-    ClienteDireccionesComponent
+    ClienteDireccionesComponent,
+    ClienteFormComponent
   ],
   imports: [
     CommonModule,
     ClientesRoutingModule,
     StatusButtonComponent,
     ItemNotFoundComponent,
-    DireccionesModule
+    DireccionesModule,
+    ReactiveFormsModule
   ],
   providers: [
     ClientesService

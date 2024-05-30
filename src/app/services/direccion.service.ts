@@ -77,7 +77,7 @@ export class DireccionService {
   }
 
   // Obtener lista de direccion por cliente
-  getDireccionesByCliente(clienteId : number): Observable<Direccion[]> {
+  getDireccionesByClientId(clienteId : number): Observable<Direccion[]> {
     const direcciones = this.direcciones.filter(d => d.clienteId === clienteId);
     return of(direcciones);
   }

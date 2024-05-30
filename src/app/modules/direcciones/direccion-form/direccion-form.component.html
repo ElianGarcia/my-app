@@ -1,0 +1,114 @@
+<div class="d-flex justify-content-center">
+    <form class="col-md-5" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="clienteId" class="form-label">Client</label>
+            <select
+                formControlName="clienteId"
+                name="clienteId"
+                class="form-select"
+                aria-describedby="helpIdClienteId">
+                <option *ngFor="let cliente of clientes" [value]="cliente.clienteId">{{ cliente.name }}</option>
+            </select>
+            <small id="helpIdClienteId" class="text-danger">{{ getError('clienteId', 'Client') }}</small>
+        </div>
+        
+
+        <div class="mb-3">
+            <label for="alias" class="form-label">Alias</label>
+            <input
+                formControlName="alias"
+                type="text"
+                name="alias"
+                class="form-control"
+                aria-describedby="helpIdAlias"
+            />
+            <small id="helpIdAlias" class="text-danger">{{ getError('alias', 'alias') }}</small>
+        </div>
+        
+        <div class="mb-3">
+            <label for="street" class="form-label">Calle</label>
+            <input
+                formControlName="street"
+                type="text"
+                name="street"
+                class="form-control"
+                aria-describedby="helpIdStreet"
+            />
+            <small id="helpIdStreet" class="text-danger">{{ getError('street', 'calle') }}</small>
+        </div>
+        
+        <div class="mb-3">
+            <label for="city" class="form-label">City</label>
+            <input
+                formControlName="city"
+                type="text"
+                name="city"
+                class="form-control"
+                aria-describedby="helpIdCity"
+            />
+            <small id="helpIdCity" class="text-danger">{{ getError('city', 'ciudad') }}</small>
+        </div>
+        
+        <div class="mb-3">
+            <label for="state" class="form-label">State</label>
+            <input
+                formControlName="state"
+                type="text"
+                name="state"
+                class="form-control"
+                aria-describedby="helpIdState"
+            />
+            <small id="helpIdState" class="text-danger">{{ getError('state', 'estado') }}</small>
+        </div>
+        
+        <div class="mb-3">
+            <label for="zipCode" class="form-label">Zip Code</label>
+            <input
+                formControlName="zipCode"
+                type="text"
+                name="zipCode"
+                class="form-control"
+                aria-describedby="helpIdZipCode"
+            />
+            <small id="helpIdZipCode" class="text-danger">{{ getError('zipCode', 'codigo postal') }}</small>
+        </div>
+        
+        <div class="mb-3">
+            <label for="country" class="form-label">Country</label>
+            <input
+                formControlName="country"
+                type="text"
+                name="country"
+                class="form-control"
+                aria-describedby="helpIdCountry"
+            />
+            <small id="helpIdCountry" class="text-danger">{{ getError('country', 'pais') }}</small>
+        </div>
+        
+        <div class="mb-3">
+            <label for="active" class="form-label">Active</label>
+            <input
+                formControlName="active"
+                type="checkbox"
+                name="active"
+                class="form-check-input"
+                aria-describedby="helpIdActive"
+            />
+            <small id="helpIdActive" class="text-danger">{{ getError('active', 'activo') }}</small>
+        </div>
+        
+        <div class="mb-3">
+            <label for="createAt" class="form-label">Created At</label>
+            <input
+                formControlName="createAt"
+                type="datetime-local"
+                name="createAt"
+                class="form-control"
+                aria-describedby="helpIdCreateAt"
+            />
+            <small id="helpIdCreateAt" class="text-danger">{{ getError('createAt', 'fecha de creacion') }}</small>
+        </div>
+        
+        <button type="submit">Guardar</button>
+    </form>
+</div>
